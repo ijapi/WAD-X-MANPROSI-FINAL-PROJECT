@@ -9,8 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="landing.css">
-    
+    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+
+
 </head>
 <body>
 
@@ -40,7 +41,9 @@
                             <button>Log In</button>
                         </div>
                         <div class="sign_in">
-                            <button>Sign In</button>
+                            <a href="{{ url('patients/create') }}">
+                                <button>Sign In</button>
+                            </a>
                         </div>
                     </div>
                     
@@ -49,10 +52,10 @@
                 <div class="main_header">
                     <nav>
                         <ul style="list-style-type:none;" class="nav">
-                            <li class="main_nav"><a href="#"></a>Home</li>
-                            <li class="main_nav"><a href="#"></a>About Us</li>
-                            <li class="main_nav"><a href="#"></a>Services</li>
-                            <li class="main_nav"><a href="#"></a>Medicine</li>
+                            <li class="main_nav"><a href="#">Home</a></li>
+                            <li class="main_nav"><a href="#">About Us</a></li>
+                            <li class="main_nav"><a href="#">Services</a></li>
+                            <li class="main_nav"><a href="{{ url('medicines') }}">Medicine</a></li> 
                             <li class="gradient">
                                 <button> Book Appointment > </button>
                             </li>
@@ -253,9 +256,14 @@
                 </p>
             </div>
         </div>
-        <button>
-            See All Doctors
-        </button>
+
+        <div class="doctor_button">
+            <a href="{{ url('doctors') }}">
+                <button>
+                    See All Doctors
+                </button>
+            </a>
+        </div>
     </div>
 
     <footer>
