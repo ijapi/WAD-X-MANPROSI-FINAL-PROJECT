@@ -9,10 +9,9 @@ class Medicine extends Model
     protected $table = "medicine";
 
     protected $fillable = [
-        'name',
+        'medicine_name',
         'description',
         'price',
         'stock',
-        'image',
     ];
 }

@@ -10,11 +10,12 @@ class PatientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index() {
+        \Log::info('Session Data', session()->all());
+    
         $patients = Patient::all();
         $nav = 'Patients';
-
+    
         return view('patients.index', compact('patients', 'nav'));
     }
 
@@ -44,6 +45,7 @@ class PatientController extends Controller
             'password' => 'required',
         ]);
 
+        $validateData['password'] = bcrypt($validateData['password']);
         Patient::create($validateData);
         return redirect()->route('patients.index')->with('success', 'Patient has been added.');
     }
@@ -101,4 +103,28 @@ class PatientController extends Controller
         $patient->delete();
         return redirect()->route('patients.index')->with('success', 'Patient has been deleted.');
     }
+
+    /**
+     * Show the login form.
+     */
+    public function showLoginForm()
+    {
+        $nav = 'Login';
+        return view('patients.login', compact('nav'));
+    }
+
+    /**
+     * Handle login request.
+     */
+    public function login(Request $request) {
+        $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+    
+        $patient = Patient::where('username', $request->username)->first();
+        return view('patients.index');
+    
+    }
+
 }

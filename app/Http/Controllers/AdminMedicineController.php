@@ -4,20 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Medicine;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-class MedicineController extends Controller
+class AdminMedicineController extends Controller
 {
     public function index()
     {
-        $medicines = Medicine::all();
-        return view('medicines.index', compact('medicines'));
+        $medicines = Medicine::all(); 
+        $nav = 'Medicines';
+        
+        return view('admins.adminmedicine.index', compact('medicines', 'nav')); 
     }
 
-    public function create()
+    public function create()    
     {
         $nav = 'Add Medicine';
-        return view('medicines.create', compact('nav'));
+        return view('admins.adminmedicine.create', compact('nav'));
     }
 
     public function store(Request $request)
@@ -31,21 +32,22 @@ class MedicineController extends Controller
 
         Medicine::create($validateData);
 
-        return redirect()->route('medicines.index')->with('success', 'Medicine has been added.');
+        return redirect()->route('adminmedicine.index')->with('success', 'Medicine has been added.');
     }
 
     public function show(string $id)
     {
         $medicine = Medicine::findOrFail($id);
         $nav = 'Medicine Details - ' . $medicine->name;
-        return view('medicines.show', compact('medicine', 'nav'));
+        return view('adminmedicine.show', compact('medicine', 'nav'));
     }
 
     public function edit(string $id)
     {
         $medicine = Medicine::findOrFail($id);
         $nav = 'Edit Medicine - ' . $medicine->name;
-        return view('medicines.edit', compact('medicine', 'nav'));
+        return view('adminmedicine.edit', compact('medicine', 'nav'));
+        
     }
 
     public function update(Request $request, string $id)
@@ -53,7 +55,7 @@ class MedicineController extends Controller
         $medicine = Medicine::findOrFail($id);
 
         $validateData = $request->validate([
-            'name' => 'required|string',
+            'medicine_name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
@@ -61,16 +63,15 @@ class MedicineController extends Controller
 
         $medicine->update($validateData);
 
-        return redirect()->route('medicines.index')->with('success', 'Medicine updated successfully.');
+        return redirect()->route('adminmedicine.index')->with('success', 'Medicine updated successfully.');
     }
 
     public function destroy(string $id)
     {
         $medicine = Medicine::findOrFail($id);
 
-        
         $medicine->delete();
 
-        return redirect()->route('medicines.index')->with('success', 'Medicine has been deleted.');
+        return redirect()->route('adminmedicine.index')->with('success', 'Medicine has been deleted.');
     }
 }
