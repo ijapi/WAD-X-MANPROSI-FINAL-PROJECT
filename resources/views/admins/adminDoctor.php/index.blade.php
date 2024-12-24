@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin - Medicine</title>
+  <title>Admin - Doctors</title>
   <!-- Bootstrap CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom CSS -->
@@ -102,7 +102,6 @@
       word-wrap: break-word; /* Wraps text to fit within the wider cells */
     }
 
-
     .btn-primary, .btn-success, .btn-warning, .btn-danger {
       border: none;
       border-radius: 5px;
@@ -140,52 +139,55 @@
 <body>
 
   <!-- Table Section -->
-  <body>
-    <div class="container">
-        <h1>Medicines</h1>
-        <div class="buttonadd">
-          <a href="{{ route('adminmedicine.create') }}" class="btn btn-primary">Add medicine</a>
-        </div>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Stock</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($medicines as $medicine)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $medicine->medicine_name }}</td>
-                    <td>{{ $medicine->description }}</td>
-                    <td>Rp {{ number_format($medicine->price, 0, ',', '.') }}</td> 
-                    <td>{{ $medicine->stock }}</td>
-                    <td>
-                        <a href="{{ route('adminmedicine.edit', $medicine->id) }}" class="btn btn-warning">Edit</a>
-                        
-                        <form action="{{ route('adminmedicine.destroy', $medicine->id) }}" method="POST" style="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this medicine??')">Delete</button>
-                                </form>
-                            </td>    
-                    </td>
-                </tr>
-              @endforeach
-            </tbody>
-        </table>
+  <div class="container">
+    <h1>Doctors</h1>
+    <div class="buttonadd">
+      <a href="{{ route('admindoctor.create') }}" class="btn btn-primary">Add Doctor</a>
     </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Working Hours</th>
+                <th>Password</th>
+                <th>Specialization Id</th>
+                <th>Phone</th>
+                <th>License Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($doctors as $doctor)
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $doctor->doctor_name }}</td>
+                <td>{{ $doctor->email }}</td>
+                <td>{{ $doctor->working_hours }}</td>
+                <td>{{ $doctor->password }}</td>
+                <td>{{ $doctor->specialization_id }}</td>
+                <td>{{ $doctor->phone }}</td>
+                <td>{{ $doctor->license_number }}</td>
+                <td>
+                    <a href="{{ route('admindoctor.edit', $doctor->id) }}" class="btn btn-warning">Edit</a>
+                    <form action="{{ route('admindoctor.destroy', $doctor->id) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this doctor?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
-    <script>
-        function showAddMedicineForm() {
-            document.getElementById('addMedicineForm').style.display = 'block';
-        }
-    </script>
+<script>
+    function showAddDoctorForm() {
+        document.getElementById('addDoctorForm').style.display = 'block';
+    }
+</script>
 </body>
 </html>
 

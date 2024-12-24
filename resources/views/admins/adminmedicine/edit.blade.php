@@ -55,34 +55,33 @@
   </style>
 </head>
 <body>
-  <div class="container mt-4">
-      <h1>Edit Medicine - {{ $medicine->name }}</h1>
+<div class="container mt-4">
+    <h1>Edit Medicine - {{ $medicine->name }}</h1>
 
-      <form action="{{ route('adminmedicine.update', $medicine->id) }}" method="POST">
+    <form action="{{ route('adminmedicine.update', $medicine->id) }}" method="POST">
         @csrf
         @method('PUT')
-      </form>
-          
-          <div class="form-group">
-              <label for="medicine_name">Name</label>
-              <input type="text" class="form-control" id="medicine_name" name="name" value="{{ $medicine->name }}" required>
-          </div>
-          <div class="form-group">
-              <label for="description">Description</label>
-              <input type="text" class="form-control" id="description" name="description" value="{{ $medicine->description }}" required>
-          </div>
-          <div class="form-group">
-              <label for="price">Price</label>
-              <input type="number" class="form-control" id="price" name="price" value="{{ $medicine->price }}" required>
-          </div>
-          <div class="form-group">
-              <label for="stock">Stock</label>
-              <input type="number" class="form-control" id="stock" name="stock" value="{{ $medicine->stock }}" required>
-          </div>
+        
+        <div class="form-group">
+            <label for="medicine_name">Name</label>
+            <input type="text" class="form-control" id="medicine_name" name="medicine_name" value="{{ $medicine->medicine_name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" name="description" value="{{ $medicine->description }}" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" class="form-control" id="price" name="price" value="{{ $medicine->price }}" required>
+        </div>
+        <div class="form-group">
+            <label for="stock">Stock</label>
+            <input type="number" class="form-control" id="stock" name="stock" value="{{ $medicine->stock }}" required>
+        </div>
 
-          <button type="submit" class="btn btn-success">Update Medicine</button>
-          <a href="{{ route('adminmedicine.index') }}" class="btn btn-danger">Cancel</a>
-      </form>
-  </div>
-</body>
+        <button type="submit" class="btn btn-success">Update Medicine</button>
+        <a href="{{ route('adminmedicine.index') }}" class="btn btn-danger">Cancel</a>
+    </form>
+</div>
+
 @endsection

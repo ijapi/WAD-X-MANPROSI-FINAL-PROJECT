@@ -18,90 +18,90 @@ class AdminPatientController extends Controller
         return view('admins.adminPatient.index', compact('patients', 'nav')); 
     }
 
-    // /**
-    //  * Show the form for creating a new resource.
-    //  */
-    // public function create()
-    // {
-    //     $nav = 'Add Patient';
-    //     return view('adminPatient.create', compact('nav'));
-    // }
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $nav = 'Add Patient';
+        return view('admins.adminPatient.create', compact('nav'));
+    }
 
-    // /**
-    //  * Store a newly created resource in storage.
-    //  */
-    // public function store(Request $request)
-    // {
-    //     $validateData = $request->validate([
-    //         'patient_name' => 'required|string',
-    //         'date_of_birth' => 'required|date',
-    //         'gender' => 'required|string',
-    //         'email' => 'required|email|unique:patient,email',
-    //         'phone' => 'required',
-    //         'address' => 'required',
-    //         'id_card' => 'required|string|unique:patient,id_card',
-    //         'username' => 'required|string|unique:patient,username',
-    //         'password' => 'required',
-    //     ]);
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request) {
+        $validatedData = $request->validate([
+            'patient_name' => 'required|string',
+            'date_of_birth' => 'required|date',
+            'gender' => 'required|string',
+            'email' => 'required|email|unique:patient,email',
+            'phone' => 'required',
+            'address' => 'required',
+            'id_card' => 'required|string|unique:patient,id_card',
+        ]);
+    
+        // Set default values for username and password
+        $validatedData['username'] = strtolower(str_replace(' ', '_', $request->patient_name));
+        $validatedData['password'] = bcrypt('defaultPassword123');
+    
+        // Create a new patient record
+        Patient::create($validatedData);
+    
+        return redirect()->route('adminPatient.index')->with('success', 'Patient has been added.');
+    }
 
-    //     Patient::create($validateData);
-    //     return redirect()->route('adminPatient.index')->with('success', 'Patient has been added.');
-    // }
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $patient = Patient::findOrFail($id);
+        $nav = 'Patient Details - ' . $patient->name;
+        return view('adminPatient.show', compact('patient', 'nav'));
+    }
 
-    // /**
-    //  * Display the specified resource.
-    //  */
-    // public function show(string $id)
-    // {
-    //     $patient = Patient::findOrFail($id);
-    //     $nav = 'Patient Details';
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $patient = Patient::findOrFail($id);
+        $nav = 'Edit Patient';
 
-    //     return view('adminPatient.show', compact('patient', 'nav')); 
-    // }
+        return view('admins.adminPatient.edit', compact('patient', 'nav'));
+    }
 
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  */
-    // public function edit(string $id)
-    // {
-    //     $patient = Patient::findOrFail($id);
-    //     $nav = 'Edit Patient';
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $patient = Patient::findOrFail($id);
 
-    //     return view('adminPatient.edit', compact('patient', 'nav'));
-    // }
+        $validatedData = $request->validate([
+            'patient_name' => 'required|string',
+            'date_of_birth' => 'required|date',
+            'gender' => 'required|string',
+            'email' => 'required|email|unique:patient,email,' . $id,
+            'phone' => 'required',
+            'address' => 'required',
+            'id_card' => 'required|string|unique:patient,id_card,' . $id,
+        ]);
 
-    // /**
-    //  * Update the specified resource in storage.
-    //  */
-    // public function update(Request $request, string $id)
-    // {
-    //     $patients = Patient::all();
-        
-    //     $request->validate([
-    //         'patient_name' => 'required|string',
-    //         'date_of_birth' => 'required|date',
-    //         'gender' => 'required|string',
-    //         'email' => 'required|email|unique:patient,email',
-    //         'phone' => 'required',
-    //         'address' => 'required',
-    //         'id_card' => 'required|string|unique:patient,id_card',
-    //         'username' => 'required|string|unique:patient,username',
-    //         'password' => 'required',
-    //     ]);
+        $patient->update($validatedData);
 
+        return redirect()->route('adminPatient.index')->with('success', 'Patient updated successfully.');
+    }
 
-    //     $patient->update($request->all());
-    //     return redirect()->route('adminPatient.index')->with('success', 'Patient updated successfully.');
-    // }
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $patient = Patient::findOrFail($id);
+        $patient->delete();
 
-    // /**
-    //  * Remove the specified resource from storage.
-    //  */
-    // public function destroy(string $id)
-    // {
-    //     $patient = Patient::findOrFail($id);
-    //     $patient->delete();
-
-    //     return redirect()->route('adminPatient.index')->with('success', 'Patient has been deleted.');
-    // }
+        return redirect()->route('adminPatient.index')->with('success', 'Patient has been deleted.');
+    }
 }

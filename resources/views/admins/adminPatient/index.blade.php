@@ -5,7 +5,7 @@
     <h1 class="mb-4" style="margin-top:50px">{{ $nav }}</h1>
 
     <div class="mb-3">
-        <a href="#" class="btn btn-primary">Add Patient</a>
+        <a href="{{ route('adminPatient.create') }}" class="btn btn-primary">Add Patient</a>
     </div>
 
     <div class="card">
@@ -41,8 +41,8 @@
                             <td>{{ $patient->id_card }}</td>
                             <td>{{ $patient->username }}</td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-warning">Edit</a> 
-                                <form action="#" method="POST" style="display: inline;">
+                                <a href="{{ route('adminPatient.edit', $patient->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <form action="{{ route('adminPatient.destroy', $patient->id) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this patient?')">Delete</button>
@@ -51,7 +51,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="10" class="text-center">No Patients found.</td> <!-- Adjust colspan as necessary -->
+                            <td colspan="10" class="text-center">No Patients found.</td>
                         </tr>
                     @endforelse
                 </tbody>
