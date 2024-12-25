@@ -167,7 +167,13 @@
                     <td>{{ $medicine->stock }}</td>
                     <td>
                         <a href="{{ route('adminmedicine.edit', $medicine->id) }}" class="btn btn-warning">Edit</a>
-                        <button class="btn btn-danger" onclick="#">Delete</button>
+                        
+                        <form action="{{ route('adminmedicine.destroy', $medicine->id) }}" method="POST" style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this medicine??')">Delete</button>
+                                </form>
+                            </td>    
                     </td>
                 </tr>
               @endforeach

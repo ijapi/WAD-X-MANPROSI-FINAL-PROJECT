@@ -8,11 +8,20 @@ use Illuminate\Support\Facades\Storage;
 
 class MedicineController extends Controller
 {
-    public function index()
-    {
+    public function index(Request $request)
+{
+    $query = $request->input('query');
+    
+    if ($query) {
+        $medicines = Medicine::where('medicine_name', 'LIKE', "%{$query}%")
+            ->orWhere('description', 'LIKE', "%{$query}%")
+            ->get();
+    } else {
         $medicines = Medicine::all();
-        return view('medicines.index', compact('medicines'));
     }
+
+    return view('medicines.index', compact('medicines'));
+}
 
     public function create()
     {

@@ -46,7 +46,7 @@ class AdminMedicineController extends Controller
     {
         $medicine = Medicine::findOrFail($id);
         $nav = 'Edit Medicine - ' . $medicine->name;
-        return view('adminmedicine.edit', compact('medicine', 'nav'));
+        return view('admins.adminmedicine.edit', compact('medicine', 'nav'));
         
     }
 

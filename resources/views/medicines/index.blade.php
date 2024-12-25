@@ -243,105 +243,141 @@
 
     </style>
 </head>
-<body>
+<body> 
+<div id="header">
+    <header>
+        <div class="logo">
+            <img src="{{ asset('icons/logo.png') }}" alt="Telkomedika">
+        </div>
+    </header>
+</div>
 
-    <div id="header">
-        <header>
-            <div class="logo">
-                <img src="icons/logo.png" alt="Telkomedika">
-            </div>
-        </header>
+<div class="medicine_body">
+    <div class="medicine_title">
+        <h1>MEDICINE</h1>
+        <hr>
     </div>
 
-    <div class="medicine_body">
-
-        <div class="medicine_title">
-            <h1>MEDICINE</h1>
-            <hr>
-        </div>
-
-        <div class="search-bar">
-            <input type="text" placeholder="Example: Bam Panci Bandung 2024">
-            <button>Search</button>
-        </div>
-
-        <div class="product-list">
-            <div class="product-card">
-                <img src="japi.jpg" alt="Product Image">
-                <div class="product-details">
-                    <div class="product_text">
-                        <div class="product_text_child">
-                            <div class="product-title">Obat Keras 120MG 21 Kapsul</div>
-                            <div>Per Strip</div>
-                            <p>Obat keras enak pakcik dijamin kuat sampai pagi nonstop</p>
-                        </div>
-                        <div class="price">
-                            <div class="product-price">Rp666.100</div>
-                        </div>
-                    </div>
-                <button class="add-button" onclick="showQuantityControls(0)">Add</button>
-                <div class="quantity-controls" id="quantity-controls-0">
-                    <button onclick="updateQuantity(-1, 0)">-</button>
-                    <span id="quantity-0">1</span>
-                    <button onclick="updateQuantity(1, 0)">+</button>
-                </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-list">
-            <div class="product-card">
-                <img src="japi.jpg" alt="Product Image">
-                <div class="product-details">
-                    <div class="product_text">
-                        <div class="product_text_child">
-                            <div class="product-title">Obat Keras 120MG 21 Kapsul</div>
-                            <div>Per Strip</div>
-                            <p>Obat keras enak pakcik dijamin kuat sampai pagi nonstop</p>
-                        </div>
-                        <div class="price">
-                            <div class="product-price">Rp666.100</div>
-                        </div>
-                    </div>
-                <button class="add-button" onclick="showQuantityControls(0)">Add</button>
-                <div class="quantity-controls" id="quantity-controls-0">
-                    <button onclick="updateQuantity(-1, 0)">-</button>
-                    <span id="quantity-0">1</span>
-                    <button onclick="updateQuantity(1, 0)">+</button>
-                </div>
-                </div>
-            </div>
-        </div>
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <form action="{{ route('medicines.index') }}" method="GET">
+            <input type="text" name="query" placeholder="Example: Bam Panci Bandung 2024" value="{{ request()->input('query') }}">
+            <button type="submit">Search</button>
+        </form>
     </div>
 
-    <footer>
-        <img src="icons/logo.png" alt="telkomedika">
-        <div class="footer_text">
-            <div class="book_footer">
-                <h1>Book Now</h1>
-                <hr>
-                <div class="footer_opt">
-                    <a>Book Appointment</a>
+    <!-- Medicines List -->
+    @if($medicines->isEmpty())
+        <p>No medicines available.</p>
+    @else
+        @foreach ($medicines as $medicine)
+            <div class="product-list">
+                <div class="product-card">
+                    <img src="{{ asset('path/to/default/image.jpg') }}" alt="{{ $medicine->medicine_name }}">
+                    <div class="product-details">
+                        <div class="product_text">
+                            <div class="product_text_child">
+                                <div class="product-title">{{ $medicine->medicine_name }}</div>
+                                <div>Per Strip</div>
+                                <div class="stock">Stock: {{ $medicine->stock }}</div>
+
+                                <p>{{ $medicine->description }}</p>
+                            </div>
+                            <div class="price" data-price="{{ $medicine->price }}">
+                                <div class="product-price">Rp{{ number_format($medicine->price, 2, ',', '.') }}</div> 
+                            </div>
+                        </div>
+
+                        <!-- Add Button with ID -->
+                        <button id="add-button-{{ $loop->index }}" class="add-button" onclick="showQuantityControls({{ $loop->index }})">Add</button>
+
+                        <!-- Quantity Controls -->
+                        <div class="quantity-controls" id="quantity-controls-{{ $loop->index }}" style="display: none;">
+                            <!-- "-" Button -->
+                            <button onclick="updateQuantity(-1, {{ $loop->index }})">-</button>
+                            <!-- Display the current quantity -->
+                            <span id="quantity-{{ $loop->index }}">1</span> 
+                            <!-- "+" Button -->
+                            <button onclick="updateQuantity(1, {{ $loop->index }})">+</button>
+                            <!-- Cancel Text -->
+                            <span style="margin-left: 10px; cursor: pointer;" onclick="cancelQuantityControls({{ $loop->index }})">Cancel</span>
+                            <!-- Total Price Display -->
+                            <span id="total-price-{{ $loop->index }}" style="margin-left: 10px;">Total: Rp{{ number_format($medicine->price, 2, ',', '.') }}</span>
+                        </div>
+
+                        <!-- Hidden input to store the maximum quantity -->
+                        <input type="hidden" id="max-quantity-{{ $loop->index }}" value="{{ $medicine->stock }}">
+                    </div>
                 </div>
             </div>
-            <div class="discover_footer">
-                <h1>Discover Us</h1>
-                <hr>
-                <div class="footer_opt">
-                    <a>Services</a>
-                    <a>About Us</a>
-                    <a>Our Doctors</a>
-                </div>
-            </div>
-            <div class="contact_footer">
-                <h1>Contact Us</h1>
-                <hr>
-                <div class="footer_opt">
-                    <a>1500115</a>
-                    <a>cs@telkomedika.co.id</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+        @endforeach
+    @endif
+</div>
+
+<footer>
+    <img src="{{ asset('icons/logo.png') }}" alt="telkomedika">
+    <div class="footer_text">
+        <!-- Footer content -->
+        ...
+    </div>
+</footer>
+
+<script>
+// JavaScript functions for handling quantity controls
+function showQuantityControls(index) {
+    const addButton = document.getElementById(`add-button-${index}`);
+    const controls = document.getElementById(`quantity-controls-${index}`);
+    
+    if (controls && addButton) {
+        controls.style.display = 'block'; // Show quantity controls
+        addButton.style.display = 'none'; // Hide Add button
+    }
+}
+
+function updateQuantity(change, index) {
+    const quantitySpan = document.getElementById(`quantity-${index}`);
+    let currentQuantity = parseInt(quantitySpan.innerText);
+    
+    // Get the maximum quantity from the hidden input
+    const maxQuantity = parseInt(document.getElementById(`max-quantity-${index}`).value);
+    
+    currentQuantity += change;
+
+    // Ensure quantity doesn't go below 1 or exceed stock
+    if (currentQuantity < 1) {
+        currentQuantity = 1;
+    } else if (currentQuantity > maxQuantity) {
+        currentQuantity = maxQuantity;
+    }
+
+    quantitySpan.innerText = currentQuantity;
+
+    // Update total price when quantity changes
+    updateTotalPrice(index);
+}
+
+function updateTotalPrice(index) {
+    const quantitySpan = document.getElementById(`quantity-${index}`);
+    const priceElement = document.querySelector(`#quantity-controls-${index} .price`);
+    
+    const unitPrice = parseFloat(priceElement.dataset.price); // Get price from data attribute
+    const totalPriceElement = document.getElementById(`total-price-${index}`);
+
+    const totalPrice = unitPrice * parseInt(quantitySpan.innerText);
+    
+    totalPriceElement.innerText = `Total: Rp${totalPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`; // Format total price
+}
+
+function cancelQuantityControls(index) {
+    const addButton = document.getElementById(`add-button-${index}`);
+    const controls = document.getElementById(`quantity-controls-${index}`);
+
+    if (controls && addButton) {
+        controls.style.display = 'none'; // Hide quantity controls
+        addButton.style.display = 'inline-block'; // Show Add button again
+    }
+}
+</script>
+
 </body>
 </html>
