@@ -79,7 +79,7 @@
             <input type="number" class="form-control" id="stock" name="stock" value="{{ $medicine->stock }}" required>
         </div>
 
-        <button type="submit" class="btn btn-success">Update Medicine</button>
+        <button type="submit" class="btn btn-success">Update</button>
         <a href="{{ route('adminmedicine.index') }}" class="btn btn-danger">Cancel</a>
     </form>
 </div>

@@ -35,6 +35,9 @@
             <li>
                 <a href="{{ route('adminmedicine.index') }}" class="sidebar-link">Medicine</a>
             </li>
+            <li>
+                <a href="{{ route('admindoctors.index') }}" class="sidebar-link">Doctor</a>
+            </li>
         </ul>
         <a href="{{ route('views.landing') }}" class="btn btn-logout">Logout</a>
     </aside>

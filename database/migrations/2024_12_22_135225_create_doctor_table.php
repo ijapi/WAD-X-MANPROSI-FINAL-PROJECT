@@ -14,19 +14,19 @@ return new class extends Migration
         Schema::create('doctor', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique(); 
-            $table->string('working_hours'); 
+            $table->string('email')->unique();
+            $table->string('working_hours'); // Contoh: "09:00 - 17:00"
             $table->string('password');
-            $table->unsignedBigInteger('specialization_id');
-            $table->string('phone');
-            $table->string('license_number');
+            $table->foreignId('specialization_id')
+                ->constrained('specializations')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->string('phone', 15)->nullable(); // Optional
+            $table->string('license_number', 50)->unique();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('doctor');

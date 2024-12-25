@@ -57,7 +57,7 @@
                             <li class="main_nav"><a href="#">Home</a></li>
                             <li class="main_nav"><a href="#">About Us</a></li>
                             <li class="main_nav"><a href="#">Services</a></li>
-                            <li class="main_nav"><a href="{{ url('medicines.index') }}">Medicine</a></li> 
+                            <li class="main_nav"><a href="{{ url('medicines') }}">Medicine</a></li> 
                             <li class="gradient">
                                 <button> Book Appointment > </button>
                             </li>

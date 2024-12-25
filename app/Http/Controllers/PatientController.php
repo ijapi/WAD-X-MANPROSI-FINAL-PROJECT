@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PatientController extends Controller
 {
@@ -11,7 +12,6 @@ class PatientController extends Controller
      * Display a listing of the resource.
      */
     public function index() {
-        \Log::info('Session Data', session()->all());
     
         $patients = Patient::all();
         $nav = 'Patients';
@@ -42,11 +42,14 @@ class PatientController extends Controller
             'address' => 'required',
             'id_card' => 'required|string|unique:patient,id_card',
             'username' => 'required|string|unique:patient,username',
-            'password' => 'required',
+            'password' => 'required|string|min:8', // Added min length validation
         ]);
 
+        // Hash the password before saving
         $validateData['password'] = bcrypt($validateData['password']);
+        
         Patient::create($validateData);
+        
         return redirect()->route('patients.index')->with('success', 'Patient has been added.');
     }
 
@@ -123,8 +126,14 @@ class PatientController extends Controller
         ]);
     
         $patient = Patient::where('username', $request->username)->first();
-        return view('patients.index');
-    
+
+        // Check if patient exists and verify password
+        if ($patient && Hash::check($request->password, $patient->password)) {
+            Auth::login($patient);
+            return redirect()->route('patients.index')->with('success', 'Logged in successfully.');
+        }
+
+        return back()->withErrors(['username' => 'Invalid credentials.']);
     }
 
 }

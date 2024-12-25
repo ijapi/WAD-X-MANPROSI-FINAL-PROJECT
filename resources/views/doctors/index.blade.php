@@ -60,29 +60,29 @@
     }
 
     .search-bar {
-     display: flex;
-     justify-content: center;
-     margin: 20px 0;
- }
- .search-bar input {
-     width: 60%;
-     padding: 10px;
-     font-size: 16px;
-     border: 1px solid #ccc;
-     border-radius: 4px 0 0 4px;
- }
- .search-bar button {
-     padding: 10px 20px;
-     font-size: 16px;
-     background-color: #d32f2f;
-     color: white;
-     border: none;
-     border-radius: 0 4px 4px 0;
-     cursor: pointer;
- }
- .search-bar button:hover {
-     background-color: #b71c1c;
- }
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .search-bar .form-control {
+      width: 60%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px 0 0 4px;
+    }
+    .search-bar .btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
+    .search-bar .btn:hover {
+      background-color: #b71c1c;
+    }
     .card {
       display: flex;
       flex-direction: row;
@@ -125,45 +125,45 @@
     }
 
     footer {
-            background-color: #FFE2E3;
-            display: flex;
-            margin-left: 30px;
-            margin-right: 30px;
-            border-radius: 40px 40px 0 0;
-        }
+      background-color: #FFE2E3;
+      display: flex;
+      margin-left: 30px;
+      margin-right: 30px;
+      border-radius: 40px 40px 0 0;
+    }
 
-        footer img {
-            margin: 40px;
-            width: 150px;
-            height: 120px;
-        }
+    footer img {
+      margin: 40px;
+      width: 150px;
+      height: 120px;
+    }
 
-        .footer_text {
-            display: flex;
-            gap: 100px;
-            margin: 20px;
-            margin-left: 50px;
-            text-align: left;
-            font-weight: 500;
-        }
+    .footer_text {
+      display: flex;
+      gap: 100px;
+      margin: 20px;
+      margin-left: 50px;
+      text-align: left;
+      font-weight: 500;
+    }
 
-        .footer_text h1 {
-            font-size: 1.5rem;
-            color: #851216;
-        }
+    .footer_text h1 {
+      font-size: 1.5rem;
+      color: #851216;
+    }
 
-        .footer_opt {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 20px;
-        }
+    .footer_opt {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
 
-        footer hr {
-            width: 300px;
-            height: 2px;
-            background-color: #000000;
-        }
+    footer hr {
+      width: 300px;
+      height: 2px;
+      background-color: #000000;
+    }
   </style>
 </head>
 <body>
@@ -186,94 +186,28 @@
   </div>
 
   <div class="search-bar">
-    <input type="text" placeholder="Example: Dr. John Doe">
-    <button>Search</button>
+    <form action="{{ route('doctors.index') }}" method="GET" class="form-inline justify-content-center">
+        <input type="text" name="query" value="{{ request('query') }}" class="form-control mr-2" style="width: 60%;" placeholder="Example: Dr. John Doe">
+        <button type="submit" class="btn btn-danger">Search</button>
+    </form>
 </div>
+
   <div class="container">
     <div class="row" id="doctor-list">
-      <!-- Doctor 1 -->
+      @foreach($doctors as $doctor)
       <div class="col-md-6">
         <div class="card">
-          <img src="doctor1.jpg" class="card-img" alt="Dr. John Doe">
+          <img src="{{ $doctor->image ? asset('images/' . $doctor->image) : asset('images/default.png') }}" class="card-img" alt="{{ $doctor->name }}">
           <div class="card-body">
-            <h5 class="card-title">Dr. John Doe</h5>
-            <p class="card-text">Specialty: Cardiology</p>
+            <h5 class="card-title">{{ $doctor->name }}</h5>
+            <p class="card-text">Specialty: {{ $doctor->specialization->name }}</p>
             <p class="clinic-text">Clinic: Telkomedika</p>
-            <p class="working-hours">Working Hours: 9:00 AM - 5:00 PM</p>
-            <a href="booking-page.html" class="btn btn-primary">Book Now</a>
+            <p class="working-hours">Working Hours: {{ $doctor->working_hours }}</p>
+            <a href="#" class="btn btn-primary">Book Now</a> <!-- Placeholder link -->
           </div>
         </div>
       </div>
-
-      <!-- Doctor 2 -->
-      <div class="col-md-6">
-        <div class="card">
-          <img src="doctor2.jpg" class="card-img" alt="Dr. Jane Smith">
-          <div class="card-body">
-            <h5 class="card-title">Dr. Jane Smith</h5>
-            <p class="card-text">Specialty: Neurology</p>
-            <p class="clinic-text">Clinic: Telkomedika</p>
-            <p class="working-hours">Working Hours: 10:00 AM - 6:00 PM</p>
-            <a href="booking-page.html" class="btn btn-primary">Book Now</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Doctor 3 -->
-      <div class="col-md-6">
-        <div class="card">
-          <img src="doctor3.jpg" class="card-img" alt="Dr. Emily White">
-          <div class="card-body">
-            <h5 class="card-title">Dr. Emily White</h5>
-            <p class="card-text">Specialty: Dermatology</p>
-            <p class="clinic-text">Clinic: Telkomedika</p>
-            <p class="working-hours">Working Hours: 8:00 AM - 4:00 PM</p>
-            <a href="booking-page.html" class="btn btn-primary">Book Now</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Doctor 4 -->
-      <div class="col-md-6">
-        <div class="card">
-          <img src="doctor4.jpg" class="card-img" alt="Dr. Michael Brown">
-          <div class="card-body">
-            <h5 class="card-title">Dr. Michael Brown</h5>
-            <p class="card-text">Specialty: Orthopedics</p>
-            <p class="clinic-text">Clinic: Telkomedika</p>
-            <p class="working-hours">Working Hours: 11:00 AM - 7:00 PM</p>
-            <a href="booking-page.html" class="btn btn-primary">Book Now</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Doctor 5 -->
-      <div class="col-md-6">
-        <div class="card">
-          <img src="doctor5.jpg" class="card-img" alt="Dr. Sarah Green">
-          <div class="card-body">
-            <h5 class="card-title">Dr. Sarah Green</h5>
-            <p class="card-text">Specialty: Pediatrics</p>
-            <p class="clinic-text">Clinic: Telkomedika</p>
-            <p class="working-hours">Working Hours: 7:00 AM - 3:00 PM</p>
-            <a href="booking-page.html" class="btn btn-primary">Book Now</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Doctor 6 -->
-      <div class="col-md-6">
-        <div class="card">
-          <img src="doctor6.jpg" class="card-img" alt="Dr. David Lee">
-          <div class="card-body">
-            <h5 class="card-title">Dr. David Lee</h5>
-            <p class="card-text">Specialty: General Medicine</p>
-            <p class="clinic-text">Clinic: Telkomedika</p>
-            <p class="working-hours">Working Hours: 12:00 PM - 8:00 PM</p>
-            <a href="booking-page.html" class="btn btn-primary">Book Now</a>
-          </div>
-        </div>
-      </div>
+      @endforeach
     </div>
   </div>
 
@@ -282,7 +216,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
     <footer>
-        <img src="icons/logo.png" alt="telkomedika">
+        <img src="{{ asset('icons/logo.png') }}" alt="telkomedika">
         <div class="footer_text">
             <div class="book_footer">
                 <h1>Book Now</h1>

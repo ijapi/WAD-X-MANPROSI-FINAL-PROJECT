@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable; 
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait; 
 
-class Patient extends Model
+class Patient extends Model implements Authenticatable 
 {
+    use AuthenticatableTrait;
+    
     protected $table = "patient";
 
     protected $fillable = [
