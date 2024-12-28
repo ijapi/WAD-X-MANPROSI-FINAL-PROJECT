@@ -124,3 +124,37 @@ return [
     ],
 
 ];
+
+return [
+
+    // Your existing configurations...
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Service Providers
+    |--------------------------------------------------------------------------
+    |
+    | Here you can manually register service providers for packages or 
+    | services that are not automatically discovered.
+    |
+    */
+    'providers' => [
+        // Add your custom providers here
+        Maatwebsite\Excel\ExcelServiceProvider::class, // For Maatwebsite Excel
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Class Aliases
+    |--------------------------------------------------------------------------
+    |
+    | These aliases allow you to refer to classes with a short and expressive
+    | syntax, making your code more readable.
+    |
+    */
+    'aliases' => [
+        // Add your custom aliases here
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class, // Alias for Maatwebsite Excel
+    ],
+
+];

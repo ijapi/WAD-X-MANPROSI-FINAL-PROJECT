@@ -16,8 +16,10 @@
 <body>
     <div id="header">
         <header>
-            <div class="logo">
-                <img src="{{ asset('icons/logo.png') }}" alt="Telkomedika">
+        <div class="logo">
+                <a href="{{ route('views.landing') }}">
+                    <img src="{{ asset('icons/logo.png') }}" alt="Telkomedika">
+                </a>
             </div>
         </header>
     </div>
@@ -104,13 +106,6 @@
 
                         <div class="form_box">
                             <div class="form_input">
-                                <label for="username">Username</label>
-                                <input type="text" id="username" name="username" placeholder="Username" value="{{ old('username') }}" required>
-                                @error('username')
-                                    <div class="error_message">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
 
                                 <label for="password">Password</label>
                                 <input type="password" id="password" name="password" placeholder="Password" required>

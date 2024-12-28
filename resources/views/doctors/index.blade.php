@@ -6,11 +6,18 @@
   <title>Doctor Profiles</title>
   <!-- Bootstrap CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom CSS -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
   <style>
     body {
-      background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', serif;
     }
+    
     #header {
       margin-bottom: 40px;
     }
@@ -25,31 +32,21 @@
       border-radius: 0 0 0 60px;
     }
     .logo {
-      background-color: #fff;
-      border-radius: 50%;
-      height: 90px;
-      width: 90px;    
-      margin-left: 50px;    
-    }
-    .logo img {
-      height: 50px;
-      margin: 20px auto;
-    }
-    .nav {
-      display: flex;
-      gap: 30px;
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-    .nav li {
-      font-size: 1.3rem;
-      color: white;
-    }
-    .nav li:hover {
-      cursor: pointer;
-      text-decoration: underline;
-    }
+            background-color: #fff;
+            border-radius: 50%;
+            height: 90px;
+            width: 90px;
+            margin-left: 50px;    
+        }
+
+        .logo img {
+            float: left;
+            height: 50px;
+            margin-left: 15px;
+            margin-right: auto;
+            margin-top: 20px;
+        }
+
     .hero {
       background-image: linear-gradient(to right, #EB1F27 , #851216);
       color: white;
@@ -60,29 +57,20 @@
     }
 
     .search-bar {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-    }
-    .search-bar .form-control {
-      width: 60%;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px 0 0 4px;
-    }
-    .search-bar .btn {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #d32f2f;
-      color: white;
-      border: none;
-      border-radius: 0 4px 4px 0;
-      cursor: pointer;
-    }
-    .search-bar .btn:hover {
-      background-color: #b71c1c;
-    }
+            justify-content: center;
+            margin: 20px 0;
+            margin-left: 120px ;
+            margin-right: 100px ;
+        }
+
+        .search-bar input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+        }
+
     .card {
       display: flex;
       flex-direction: row;
@@ -123,61 +111,58 @@
       font-size: 1rem;
       color: #6c757d;
     }
-
+   
     footer {
-      background-color: #FFE2E3;
-      display: flex;
-      margin-left: 30px;
-      margin-right: 30px;
-      border-radius: 40px 40px 0 0;
-    }
+            background-color: #FFE2E3;
+            display: flex;
+            margin-left: 30px;
+            margin-right: 30px;
+            border-radius: 40px 40px 0 0;
+            margin-top: 60px;
+        }
 
-    footer img {
-      margin: 40px;
-      width: 150px;
-      height: 120px;
-    }
+        footer img{
+            margin: 40px;
+            width: 150px;
+            height: 120px;
+        }
 
-    .footer_text {
-      display: flex;
-      gap: 100px;
-      margin: 20px;
-      margin-left: 50px;
-      text-align: left;
-      font-weight: 500;
-    }
+        .footer_text {
+            display: flex;
+            gap: 100px;
+            margin: 20px;
+            margin-left: 50px;
+            text-align: left;
+            font-weight: 500;
+        }
 
-    .footer_text h1 {
-      font-size: 1.5rem;
-      color: #851216;
-    }
+        .footer_text h1 {
+            font-size: 1.5rem;
+            color: #851216;
+        }
 
-    .footer_opt {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
-    }
+        .footer_opt {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
 
-    footer hr {
-      width: 300px;
-      height: 2px;
-      background-color: #000000;
-    }
+        footer hr {
+            background-color:#000000;
+            width: 300px;
+            height: 2px;
+        }
   </style>
 </head>
 <body>
   <div id="header">
     <header>
       <div class="logo">
-        <img src="{{ asset('icons/logo.png') }}" alt="Telkomedika">
+          <a href="{{ route('patients.index') }}">
+            <img src="{{ asset('icons/logo.png') }}" alt="Telkomedika">
+          </a>
       </div>
-      <ul class="nav">
-        <li><a href="#" style="color: white;">Home</a></li>
-        <li><a href="#" style="color: white;">About Us</a></li>
-        <li><a href="#" style="color: white;">Services</a></li>
-        <li><a href="#" style="color: white;">Medicine</a></li>
-      </ul>
     </header>
   </div>
 
@@ -187,7 +172,7 @@
 
   <div class="search-bar">
     <form action="{{ route('doctors.index') }}" method="GET" class="form-inline justify-content-center">
-        <input type="text" name="query" value="{{ request('query') }}" class="form-control mr-2" style="width: 60%;" placeholder="Example: Dr. John Doe">
+        <input type="text" name="query" value="{{ request('query') }}" class="form-control mr-2" style="width: 60%;" placeholder="Example: Dr. Mayla Yeppo">
         <button type="submit" class="btn btn-danger">Search</button>
     </form>
 </div>
@@ -197,14 +182,14 @@
       @foreach($doctors as $doctor)
       <div class="col-md-6">
         <div class="card">
-          <img src="{{ $doctor->image ? asset('images/' . $doctor->image) : asset('images/default.png') }}" class="card-img" alt="{{ $doctor->name }}">
           <div class="card-body">
             <h5 class="card-title">{{ $doctor->name }}</h5>
             <p class="card-text">Specialty: {{ $doctor->specialization->name }}</p>
             <p class="clinic-text">Clinic: Telkomedika</p>
             <p class="working-hours">Working Hours: {{ $doctor->working_hours }}</p>
-            <a href="#" class="btn btn-primary">Book Now</a> <!-- Placeholder link -->
+            <a href="#" class="btn btn-primary">Book Now</a> 
           </div>
+          <img style="height:100px; margin:60px;" src="{{ asset('icons/doctor icon.png') }}" alt="Telkomedika">
         </div>
       </div>
       @endforeach

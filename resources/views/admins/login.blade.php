@@ -23,7 +23,7 @@
 
     <div class="form_body">
         <div class="login_head">
-            <h1>Login to Account</h1>
+            <h1>Login to Account (Admin Portal)</h1>
             <hr>
         </div>
 
@@ -40,7 +40,7 @@
                 @csrf
                 <div class="form_box">
                     <div class="form_input">
-                        <label for="username">Username</label>
+                        <label for="username">Admin Username</label>
                         <input type="text" id="username" name="username" placeholder="Username" value="{{ old('username') }}" required>
                         @error('username')
                             <div class="error_message">

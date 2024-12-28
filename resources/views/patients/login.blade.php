@@ -16,7 +16,9 @@
     <div id="header">
         <header>
             <div class="logo">
-                <img src="{{ asset('icons/logo.png') }}" alt="Telkomedika">
+                <a href="{{ route('views.landing') }}">
+                    <img src="{{ asset('icons/logo.png') }}" alt="Telkomedika">
+                </a>
             </div>
         </header>
     </div>
@@ -40,9 +42,9 @@
                 @csrf
                 <div class="form_box">
                     <div class="form_input">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" placeholder="Username" value="{{ old('username') }}" required>
-                        @error('username')
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
+                        @error('email')
                             <div class="error_message">
                                 {{ $message }}
                             </div>

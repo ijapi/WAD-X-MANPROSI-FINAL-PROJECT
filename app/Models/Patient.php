@@ -10,7 +10,7 @@ class Patient extends Model implements Authenticatable
 {
     use AuthenticatableTrait;
     
-    protected $table = "patient";
+    protected $table = 'patient';
 
     protected $fillable = [
         'patient_name',
@@ -20,7 +20,6 @@ class Patient extends Model implements Authenticatable
         'phone',
         'address',
         'id_card',
-        'username',
         'password',
     ];
 }

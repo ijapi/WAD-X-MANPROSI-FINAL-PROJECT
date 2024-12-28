@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('phone');
             $table->text('address');
             $table->string('id_card')->unique();
-            $table->string('username')->unique();
             $table->string('password');
             $table->timestamps();
         });

@@ -13,14 +13,17 @@
     <style>
         body {
             font-family: 'Poppins', serif;
+            
         }
 
         .sidebar {
             background-color: #f1f1f1;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             font-size: 1rem;
             height: 100vh;
             padding: 10px;
+            position: fixed;
+            top: 0; 
+            left: 1%;
         }
 
         .sidebar a {
@@ -42,16 +45,6 @@
             color: #fff;
         }
  
-        .navbar .searchbar {
-            margin-right: 10px;
-            border-radius: 5px;
-            padding: 3px;
-        }
-
-        .navbar .searchbutton {
-            border-radius: 5px;
-            padding: 3px;
-        }
     </style>
 </head>
 <body>
