@@ -1,0 +1,33 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.checkout-body {
+    padding: 20px;
+}
+
+.checkout-items {
+    margin-bottom: 20px;
+}
+
+.checkout-item {
+    margin-bottom: 10px;
+}
+
+.checkout-buttons button {
+    background-color: #851216;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.checkout-buttons button:hover {
+    background-color: #a71d2f;
+}
+
+#checkout-total {
+    font-size: 20px;
+    font-weight: bold;
+}

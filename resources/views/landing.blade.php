@@ -44,7 +44,7 @@
                         </div>
                         <div class="sign_in">
                             <a href="{{ url('patients/create') }}">
-                                <button>Sign In</button>
+                                <button>Sign Up</button>
                             </a>
                         </div>
                     </div>
@@ -55,8 +55,8 @@
                     <nav>
                         <ul style="list-style-type:none;" class="nav">
                             <li class="main_nav"><a href="#">Home</a></li>
-                            <li class="main_nav"><a href="#">About Us</a></li>
-                            <li class="main_nav"><a href="#">Services</a></li>
+                            <li class="main_nav"><a href="{{ url('doctors') }}">Doctors</a></li>
+                            <li class="main_nav"><a href="{{ url('symptoms') }}">Check Symptoms</a></li>
                             <li class="main_nav"><a href="{{ url('medicines') }}">Medicine</a></li> 
                             <li class="gradient">
                                 <button> Book Appointment > </button>

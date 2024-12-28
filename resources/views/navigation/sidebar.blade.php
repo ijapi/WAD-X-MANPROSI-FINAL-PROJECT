@@ -6,17 +6,30 @@
     <title></title>
 
     <style>
-        .btn-logout {
-            display: block;
-            width: 100px; 
-            padding: 10px;
-            align-items: center;
-            text-align: center;
-            color: #000;
-            background-color:  #f1f1f1;
-            border: 3px solid #851216; /* Red border */
-            border-radius: 5px; /* Rounded corners */
-            transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+        .body {
+            display: none;
+            position: fixed;
+            
+        }
+
+        .logout button {
+            width: 100px;
+            height: 50px;
+            border-radius: 15px;
+            font-size: 1rem;
+            background-color: #efefef;
+            border-color: #737373;
+            color: #000000;
+            font-family: 'Poppins', serif;
+            font-weight: 500;
+            border-width: 3px;
+        }
+
+        .logout button:hover {
+            cursor: pointer;
+            background-color: #851216;
+            border-color: #851216;
+            color: #fff;
         }
     </style>
 </head>
@@ -38,8 +51,13 @@
             <li>
                 <a href="{{ route('admindoctors.index') }}" class="sidebar-link">Doctor</a>
             </li>
+            <li>
+                <a href="{{ route('adminsymptoms.index') }}" class="sidebar-link">Symptom</a>
+            </li>
         </ul>
-        <a href="{{ route('views.landing') }}" class="btn btn-logout">Logout</a>
+        <a href="{{ route('views.landing') }}" class="logout">
+            <button>Logout</button>
+        </a>
     </aside>
 
 </body>

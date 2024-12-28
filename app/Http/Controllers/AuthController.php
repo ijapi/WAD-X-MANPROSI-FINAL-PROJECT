@@ -26,18 +26,19 @@ class AuthController extends Controller
     public function patientLogin(Request $request)
     {
         $request->validate([
-            'username' => 'required|string',
+            'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
 
-        $patient = Patient::where('username', $request->username)->first();
+        // Retrieve patient by email instead of username
+        $patient = Patient::where('email', $request->email)->first();
 
         if ($patient && Hash::check($request->password, $patient->password)) {
             Auth::login($patient);
             return redirect()->route('patients.index')->with('success', 'Logged in successfully.');
         }
 
-        return back()->withErrors(['username' => 'Invalid credentials.']);
+        return back()->withErrors(['email' => 'Invalid credentials.']);
     }
 
     public function adminLogin(Request $request)
@@ -60,6 +61,6 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/')->with('success', 'Logged out successfully.');
+        return redirect()->route('views.landing')->with('success', 'Logged out successfully.');
     }
 }

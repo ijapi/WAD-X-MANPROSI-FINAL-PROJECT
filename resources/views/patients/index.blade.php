@@ -18,7 +18,9 @@
     <div id="header">
         <header>
             <div class="logo">
-                <img src="{{ asset('icons/logo.png') }}" alt="Telkomedika">
+                <a href="{{ route('patients.index') }}">
+                    <img src="{{ asset('icons/logo.png') }}" alt="Telkomedika">
+                </a>
             </div>
 
             <div class="navigation">
@@ -37,7 +39,7 @@
                     </div>
 
                     <div class="profile">
-                        <img src="{{ asset('icons/profile.png') }}" alt="Your Profile">
+                        <a href="{{ route('patients.profile') }}"><img src="{{ asset('icons/profile.png') }}" alt="Your Profile"></a>
                     </div>
                     
                 </div>
@@ -46,8 +48,8 @@
                     <nav>
                         <ul style="list-style-type:none;" class="nav">
                             <li class="main_nav"><a href="#">Home</a></li>
-                            <li class="main_nav"><a href="#">About Us</a></li>
-                            <li class="main_nav"><a href="#">Services</a></li>
+                            <li class="main_nav"><a href="{{ url('doctors') }}">Doctors</a></li>
+                            <li class="main_nav"><a href="{{ url('symptoms') }}">Check Symptoms</a></li>
                             <li class="main_nav"><a href="{{ url('medicines') }}">Medicine</a></li> 
                             <li class="gradient">
                                 <button> Book Appointment > </button>

@@ -1,11 +1,31 @@
 @extends('admins.index')
 @section('content')
 
+<style>
+    .table th {
+        background-color: #851216;
+        color: white;
+        font-weight: 500;
+    }
+
+    .mb-3 {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    .mb-3 a{
+        margin-bottom: 40px;
+    }
+</style>
+
 <div class="container mt-4">
-    <h1 class="mb-4" style="margin-top:50px">{{ $nav }}</h1>
 
     <div class="mb-3">
-        <a href="{{ route('adminPatient.create') }}" class="btn btn-primary">Add Patient</a>
+        <h1 class="mb-4" style="margin-top:50px">{{ $nav }}</h1>
+        <div>
+            <a href="{{ route('adminPatient.create') }}" class="btn btn-primary">Add Patient</a>
+        </div>
     </div>
 
     <div class="card">
@@ -24,7 +44,6 @@
                         <th>Phone</th>
                         <th>Address</th>
                         <th>ID Card</th>
-                        <th>Username</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -39,9 +58,8 @@
                             <td>{{ $patient->phone }}</td>
                             <td>{{ $patient->address }}</td>
                             <td>{{ $patient->id_card }}</td>
-                            <td>{{ $patient->username }}</td>
                             <td>
-                                <a href="{{ route('adminPatient.edit', $patient->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{{ route('adminPatient.edit', $patient->id) }}" class="btn btn-sm btn-warning" style="color:white; background-color: #ff9900;">Edit</a>
                                 <form action="{{ route('adminPatient.destroy', $patient->id) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
@@ -61,3 +79,4 @@
 </div>
 
 @endsection
+

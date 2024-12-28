@@ -42,7 +42,6 @@ class AdminPatientController extends Controller
         ]);
     
         // Set default values for username and password
-        $validatedData['username'] = strtolower(str_replace(' ', '_', $request->patient_name));
         $validatedData['password'] = bcrypt('defaultPassword123');
     
         // Create a new patient record

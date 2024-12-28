@@ -102,6 +102,12 @@
       word-wrap: break-word; /* Wraps text to fit within the wider cells */
     }
 
+    .mb-3 {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
 
     .btn-primary, .btn-success, .btn-warning, .btn-danger {
       border: none;
@@ -123,7 +129,7 @@
       height: 40px;
       cursor: pointer;
       text-decoration: none;
-      margin-bottom: 30px;
+      margin-bottom:20px;
       margin-top:30px;
     }
 
@@ -142,9 +148,11 @@
   <!-- Table Section -->
   <body>
     <div class="container">
-        <h1>Medicines</h1>
-        <div class="buttonadd">
-          <a href="{{ route('adminmedicine.create') }}" class="btn btn-primary">Add medicine</a>
+        <div class="mb-3">
+          <h1>Medicines</h1>
+          <div class="buttonadd">
+            <a href="{{ route('adminmedicine.create') }}" class="btn btn-primary">Add medicine</a>
+          </div>
         </div>
         <table class="table table-bordered">
             <thead>
