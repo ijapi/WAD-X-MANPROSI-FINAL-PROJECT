@@ -102,7 +102,7 @@ class PatientController extends Controller
      */
     public function showProfile() {
         $patient = Auth::user();
-        $nav = 'Your Profile';
+        $nav = 'YOUR PROFILE';
         return view('patients.profile', compact('nav', 'patient'));
     }
 

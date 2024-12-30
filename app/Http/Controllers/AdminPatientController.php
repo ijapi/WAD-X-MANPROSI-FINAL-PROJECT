@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Spatie\LaravelPdf\Facades\Pdf;
+use Spatie\Browsershot\Browsershot;
+use Illuminate\Support\Facades\Storage;
+
 
 class AdminPatientController extends Controller
 {
@@ -41,10 +45,10 @@ class AdminPatientController extends Controller
             'id_card' => 'required|string|unique:patient,id_card',
         ]);
     
-        // Set default values for username and password
+
+
         $validatedData['password'] = bcrypt('defaultPassword123');
-    
-        // Create a new patient record
+
         Patient::create($validatedData);
     
         return redirect()->route('adminPatient.index')->with('success', 'Patient has been added.');
@@ -103,4 +107,14 @@ class AdminPatientController extends Controller
 
         return redirect()->route('adminPatient.index')->with('success', 'Patient has been deleted.');
     }
+
+    public function exportPdf() 
+    {
+        $patients = Patient::all();
+        $nav = 'Patient List'; 
+
+        return Pdf::view('admins.adminPatient.pdf', compact('patients', 'nav'))
+        ->download('patient_list.pdf');
+    }
+
 }

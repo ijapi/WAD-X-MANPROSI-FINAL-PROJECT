@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doctor Profiles</title>
+  <title>Telkomedika</title>
   <!-- Bootstrap CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
@@ -113,46 +113,60 @@
     }
    
     footer {
-            background-color: #FFE2E3;
-            display: flex;
-            margin-left: 30px;
-            margin-right: 30px;
-            border-radius: 40px 40px 0 0;
-            margin-top: 60px;
-        }
+    background-color: #FFE2E3;
+    display: flex;
+    margin-left: 30px;
+    margin-right: 30px;
+    border-radius: 40px 40px 0 0;
+    margin-top: 60px;
+}
 
-        footer img{
-            margin: 40px;
-            width: 150px;
-            height: 120px;
-        }
+footer a {
+    color: #000000;
+    text-decoration: none;
+}
 
-        .footer_text {
-            display: flex;
-            gap: 100px;
-            margin: 20px;
-            margin-left: 50px;
-            text-align: left;
-            font-weight: 500;
-        }
 
-        .footer_text h1 {
-            font-size: 1.5rem;
-            color: #851216;
-        }
+footer a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
 
-        .footer_opt {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 20px;
-        }
+footer img{
+    margin: 40px;
+    width: 150px;
+    height: 120px;
+}
 
-        footer hr {
-            background-color:#000000;
-            width: 300px;
-            height: 2px;
-        }
+.footer_text {
+    display: flex;
+    gap: 100px;
+    margin: 20px;
+    margin-left: 50px;
+    text-align: left;
+    font-weight: 500;
+}
+
+.footer_text h1 {
+    font-size: 1.5rem;
+    color: #851216;
+}
+
+.footer_opt {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+footer hr {
+    width: 300px;
+    height: 2px;
+    background-color: #000000;
+}
+
+
+
   </style>
 </head>
 <body>
@@ -200,31 +214,31 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
-    <footer>
-        <img src="{{ asset('icons/logo.png') }}" alt="telkomedika">
+  <footer>
+        <img src="icons/logo.png" alt="telkomedika">
         <div class="footer_text">
             <div class="book_footer">
                 <h1>Book Now</h1>
                 <hr>
                 <div class="footer_opt">
-                    <a href="#">Book Appointment</a>
+                    <a href="{{ url('appointments') }}">Book Appointment</a>
                 </div>
             </div>
             <div class="discover_footer">
                 <h1>Discover Us</h1>
                 <hr>
                 <div class="footer_opt">
-                    <a href="#">Services</a>
-                    <a href="#">About Us</a>
-                    <a href="#">Our Doctors</a>
+                    <a href="#services">Services</a>
+                    <a href="#about_us">About Us</a>
+                    <a href="{{ url('doctors') }}" >Our Doctors</a>
                 </div>
             </div>
             <div class="contact_footer">
                 <h1>Contact Us</h1>
                 <hr>
                 <div class="footer_opt">
-                    <a href="tel:1500115">1500115</a>
-                    <a href="mailto:cs@telkomedika.co.id">cs@telkomedika.co.id</a>
+                  <a href="tel:1500115">1500115</a>
+                  <a href="mailto:cs@telkomedika.co.id">cs@telkomedika.co.id</a>
                 </div>
             </div>
         </div>

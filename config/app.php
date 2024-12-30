@@ -139,8 +139,10 @@ return [
     |
     */
     'providers' => [
-        // Add your custom providers here
-        Maatwebsite\Excel\ExcelServiceProvider::class, // For Maatwebsite Excel
+    /*
+     * Package Service Providers...
+     */
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*

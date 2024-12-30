@@ -54,6 +54,9 @@
             <li>
                 <a href="{{ route('adminsymptoms.index') }}" class="sidebar-link">Symptom</a>
             </li>
+            <li>
+                <a href="{{ route('adminappointments.index') }}" class="sidebar-link">Appointment</a>
+            </li>
         </ul>
         <a href="{{ route('views.landing') }}" class="logout">
             <button>Logout</button>

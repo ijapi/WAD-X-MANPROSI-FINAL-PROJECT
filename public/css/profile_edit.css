@@ -32,9 +32,16 @@ header {
 }
 
 h1 {
-    margin-left: 100px;
-    margin-top: 50px;
     font-weight: 500;
+}
+
+.hero {
+    background-image: linear-gradient(to right, #EB1F27, #851216);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 40px;
+    margin-top: 40px;
 }
 
 .profile-box {
