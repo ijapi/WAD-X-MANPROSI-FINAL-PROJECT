@@ -217,7 +217,9 @@
 <body>
     <header>
         <div class="logo">
+        <a href="{{ route('patients.index') }}">
             <img src="{{ asset('icons/logo.png') }}" alt="Telkomedika">
+        </a>
         </div>
     </header>
 

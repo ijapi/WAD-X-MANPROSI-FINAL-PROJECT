@@ -9,14 +9,14 @@ class CreateSpecializationSymptomTable extends Migration
     public function up()
     {
         Schema::create('specialization_symptom', function (Blueprint $table) {
-            $table->id(); // Primary key
-            $table->foreignId('specialization_id') // Foreign key to specializations table
-                  ->constrained('specializations') // References the 'id' on 'specializations'
-                  ->onDelete('cascade'); // Cascades on delete
-            $table->foreignId('symptom_id') // Foreign key to symptoms table
-                  ->constrained('symptoms') // References the 'id' on 'symptoms'
-                  ->onDelete('cascade'); // Cascades on delete
-            $table->timestamps(); // Created at & Updated at
+            $table->id(); 
+            $table->foreignId('specialization_id') 
+                  ->constrained('specializations') 
+                  ->onDelete('cascade'); 
+            $table->foreignId('symptom_id') 
+                  ->constrained('symptoms') 
+                  ->onDelete('cascade'); 
+            $table->timestamps(); 
         });
     }
 

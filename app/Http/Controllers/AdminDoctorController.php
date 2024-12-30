@@ -31,7 +31,7 @@ class AdminDoctorController extends Controller
             'license_number' => 'required|string|max:50|unique:doctor,license_number',
         ]);
 
-        $validateData['password'] = bcrypt($validateData['password']); // Encrypt password
+        $validateData['password'] = bcrypt($validateData['password']); 
 
         Doctor::create($validateData);
         return redirect()->route('admindoctors.index')->with('success', 'Doctor has been added.');
@@ -59,7 +59,7 @@ class AdminDoctorController extends Controller
         ]);
 
         if ($request->filled('password')) {
-            $validateData['password'] = bcrypt($validateData['password']); // Encrypt password if provided
+            $validateData['password'] = bcrypt($validateData['password']);
         }
 
         $doctor->update($validateData);

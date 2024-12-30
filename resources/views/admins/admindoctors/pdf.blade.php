@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            font-size: 0.8rem;
+            font-size: 1rem;
         }
         table {
             width: 100%;
@@ -34,26 +34,25 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Date of Birth</th>
-                <th>Gender</th>
                 <th>Email</th>
+                <th>Working Hours</th>
+                <th>Specialization ID</th>
                 <th>Phone</th>
-                <th>Address</th>
-                <th>ID Card</th>
+                <th>License Number</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($patients as $patient)
-                <tr>
-                    <td>{{ $patient->id }}</td>
-                    <td>{{ $patient->patient_name }}</td>
-                    <td>{{ $patient->date_of_birth }}</td>
-                    <td>{{ $patient->gender }}</td>
-                    <td>{{ $patient->email }}</td>
-                    <td>{{ $patient->phone }}</td>
-                    <td>{{ $patient->address }}</td>
-                    <td>{{ $patient->id_card }}</td>
-                </tr>
+            @foreach($doctors as $index => $doctor)
+            <tr>
+                <td>{{ $index + 1 }}</td> 
+                <td>{{ $doctor->name }}</td>
+                <td>{{ $doctor->email }}</td>
+                <td>{{ $doctor->working_hours }}</td>
+                <td>{{ $doctor->specialization_id }}</td>
+                <td>{{ $doctor->phone }}</td>
+                <td>{{ $doctor->license_number }}</td>
+            </tr>
             @endforeach
         </tbody>
     </table>

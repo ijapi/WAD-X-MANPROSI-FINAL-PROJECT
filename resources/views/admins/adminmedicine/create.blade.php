@@ -8,11 +8,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Medicine - Telkomedika</title>
-  <!-- Bootstrap CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       background-color: #f8f9fa;
+      font-family:'Poppins', serif;;
     }
 
     .btn-primary, .btn-success, .btn-warning, .btn-danger {
@@ -36,7 +36,6 @@
     .btn-success { background-color: #28a745; }
     .btn-success:hover { background-color: #218838; }
 
-    /* Modal Styling */
     .modal-header {
       background-color: #851216;
       color: white;
@@ -62,7 +61,6 @@
   </style>
 </head>
 <body>
-  <!-- Add Doctor Modal -->
   <div class="modal fade" id="addMedicineModal" tabindex="-1" role="dialog" aria-labelledby="addMedicineModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -96,16 +94,14 @@
     </div>
   </div>
 
-  <!-- Bootstrap JS and dependencies -->
+ 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
   <script>
     $(document).ready(function() {
-      // Automatically open the modal for adding a doctor
       $('#addMedicineModal').modal('show');
 
-      // Submit form logic
       $('#addMedicineForm').on('submit', function(event) {
         event.preventDefault();
         const newMedicine = {
@@ -117,10 +113,8 @@
           Image: $('#newMedicineImage').val(),
         };
 
-        // For demonstration, log the new doctor data
         console.log('New Medicine Added:', newMedicine);
 
-        // Close modal (in a real app, send this data to the server)
         $('#addMedicineModal').modal('hide');
       });
     });

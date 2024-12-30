@@ -18,7 +18,6 @@ class CreateAppointmentsTable extends Migration
             $table->text('notes')->nullable();
             $table->timestamps();
 
-            // Foreign keys
             $table->foreign('patient_id')->references('id')->on('patient')->onDelete('cascade');
             $table->foreign('doctor_id')->references('id')->on('doctor')->onDelete('cascade');
             $table->foreign('specialization_id')->references('id')->on('specializations')->onDelete('set null');
@@ -30,3 +29,4 @@ class CreateAppointmentsTable extends Migration
         Schema::dropIfExists('appointments');
     }
 }
+

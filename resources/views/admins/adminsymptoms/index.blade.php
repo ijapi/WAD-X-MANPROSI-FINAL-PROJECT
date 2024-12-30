@@ -81,14 +81,17 @@
 <div class="container">
     <div class="header">
         <h1>Symptoms</h1>
-        <a href="{{ route('adminsymptoms.create') }}" class="btn btn-primary">Add Symptom</a>
+        <div class="buttons">
+            <a href="{{ route('adminsymptoms.create') }}" class="btn btn-primary">Add Symptom</a>
+            <a href="{{ route('adminsymptoms.symptom_export') }}" class="btn btn-secondary" style="margin-left: 10px;">Export PDF</a>
+        </div>
     </div>
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Specializations</th> <!-- Added this column -->
+                <th>Specializations</th> 
                 <th>Actions</th>
             </tr>
         </thead>
@@ -98,7 +101,6 @@
                     <td>{{ $symptom->id }}</td>
                     <td>{{ $symptom->name }}</td>
                     <td>
-                        <!-- Display the associated specializations -->
                         @foreach($symptom->specializations as $specialization)
                             {{ $specialization->name }}<br>
                         @endforeach

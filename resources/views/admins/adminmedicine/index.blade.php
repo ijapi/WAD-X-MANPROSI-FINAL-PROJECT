@@ -8,12 +8,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin - Medicine</title>
-  <!-- Bootstrap CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom CSS -->
   <style>
     body {
       background-color: #f8f9fa;
+      font-family:'Poppins', serif;;
     }
 
     h1 {
@@ -76,16 +75,17 @@
     }
 
     .table {
+      margin-top: 30px;
       background-color: white;
       border-radius: 10px;
       box-shadow: 0 10px 10px rgba(91, 73, 73, 0.5);
-      width: 100%; /* Ensures the table spans the full width of its container */
+      width: 100%;
     }
 
     .table th, .table td {
       text-align: center;
       vertical-align: middle;
-      padding: 8px; /* Adds extra spacing inside cells */
+      padding: 8px; 
     }
 
     .table th {
@@ -94,12 +94,12 @@
     }
 
     .table thead th {
-      width: 16.6%; /* Each column gets an equal width */
+      width: 16.6%;
     }
 
     .table td {
-      width: 16.6%; /* Ensure data aligns with headers */
-      word-wrap: break-word; /* Wraps text to fit within the wider cells */
+      width: 16.6%; 
+      word-wrap: break-word; 
     }
 
     .mb-3 {
@@ -119,18 +119,11 @@
       text-decoration: none;
       margin-bottom: 5px;
       margin-top:5px;
+      
     }
 
-    .buttonadd {
-      border: none;
-      border-radius: 5px;
-      color: white;
-      width: 150px;
-      height: 40px;
-      cursor: pointer;
-      text-decoration: none;
-      margin-bottom:20px;
-      margin-top:30px;
+    .buttons {
+      margin-top: 50px;
     }
 
     .btn-success { background-color: #28a745; }
@@ -145,15 +138,15 @@
 </head>
 <body>
 
-  <!-- Table Section -->
   <body>
-    <div class="container">
-        <div class="mb-3">
-          <h1>Medicines</h1>
-          <div class="buttonadd">
-            <a href="{{ route('adminmedicine.create') }}" class="btn btn-primary">Add medicine</a>
-          </div>
+  <div class="container">
+    <div class="header" style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Medicines</h1>
+        <div class=buttons>
+            <a href="{{ route('adminmedicine.create') }}" class="btn btn-primary">Add Medicines </a>
+            <a href="{{ route('adminmedicine.medicine_export') }}" class="btn btn-secondary" style="margin-left: 10px;">Export PDF</a>
         </div>
+    </div>
         <table class="table table-bordered">
             <thead>
                 <tr>

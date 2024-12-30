@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('working_hours'); // Contoh: "09:00 - 17:00"
+            $table->string('working_hours'); 
             $table->string('password');
             $table->foreignId('specialization_id')
                 ->constrained('specializations')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->string('phone', 15)->nullable(); // Optional
+            $table->string('phone', 15)->nullable(); 
             $table->string('license_number', 50)->unique();
             $table->timestamps();
         });
