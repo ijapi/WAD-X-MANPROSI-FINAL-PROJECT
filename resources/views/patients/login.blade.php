@@ -29,6 +29,7 @@
             <hr>
         </div>
 
+        <p class="register_link">Don't have an account? &nbsp<a href="{{ url('patients/create') }}"> Register here</a> </p>
         <div class="login_body">
             <div class="circles">
                 <div class="c1">

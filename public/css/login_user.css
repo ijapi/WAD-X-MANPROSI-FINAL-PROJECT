@@ -122,3 +122,9 @@ input[type=text], input[type="password"], input[type="email"]{
     text-align: end;
     font-weight: 500;
 }
+
+.register_link {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 100px;
+}

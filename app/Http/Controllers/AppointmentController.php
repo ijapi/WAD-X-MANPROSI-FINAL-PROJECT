@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
-    // Display logged-in patient's appointments
     public function index()
 {
     $appointments = Appointment::with(['doctor', 'specialization'])
@@ -18,18 +17,14 @@ class AppointmentController extends Controller
 
     return view('appointments.index', compact('appointments'));
 }
-
-    // Show the appointment booking form
     public function create()
 {
     $specializations = Specialization::all();
     $doctors = Doctor::all();
 
-    // Pass the specializations and doctors to the create view
     return view('appointments.create', compact('specializations', 'doctors'));
 }
 
-    // Book a new appointment
     public function store(Request $request)
     {
     
@@ -60,14 +55,10 @@ class AppointmentController extends Controller
    */
   public function cancel(Request $request, $id)
   {
-      // Find the appointment by ID, or fail if not found
       $appointment = Appointment::findOrFail($id);
   
-      // Delete the appointment
       $appointment->delete();
-  
-      // Redirect with a success message
+      
       return redirect()->route('appointments.index')->with('success', 'Appointment canceled successfully.');
   }
 }
-

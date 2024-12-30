@@ -23,7 +23,6 @@ class Appointment extends Model
     const STATUS_CANCELLED = 'cancelled';
     const STATUS_COMPLETED = 'completed';
 
-    // Define relationships
     public function patient()
     {
         return $this->belongsTo(Patient::class);

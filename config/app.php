@@ -142,7 +142,7 @@ return [
     /*
      * Package Service Providers...
      */
-        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -156,7 +156,7 @@ return [
     */
     'aliases' => [
         // Add your custom aliases here
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class, // Alias for Maatwebsite Excel
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

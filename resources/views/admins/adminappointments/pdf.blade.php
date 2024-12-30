@@ -32,27 +32,23 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Date of Birth</th>
-                <th>Gender</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>ID Card</th>
+                <th>Patient Name</th>
+                <th>Doctor Name</th>
+                <th>Specializations</th>
+                <th>Appointment Date</th>
+                <th>Status</th>
+                <th>Notes</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($patients as $patient)
+            @foreach ($appointments as $appointment)
                 <tr>
-                    <td>{{ $patient->id }}</td>
-                    <td>{{ $patient->patient_name }}</td>
-                    <td>{{ $patient->date_of_birth }}</td>
-                    <td>{{ $patient->gender }}</td>
-                    <td>{{ $patient->email }}</td>
-                    <td>{{ $patient->phone }}</td>
-                    <td>{{ $patient->address }}</td>
-                    <td>{{ $patient->id_card }}</td>
+                    <td>{{ $appointment->patient->patient_name }}</td>
+                    <td>{{ $appointment->doctor->name }}</td>
+                    <td>{{ $appointment->specialization->name }}</td>
+                    <td>{{ $appointment->appointment_date }}</td>
+                    <td>{{ $appointment->status_label }}</td>
+                    <td>{{ $appointment->notes }}</td>
                 </tr>
             @endforeach
         </tbody>

@@ -16,7 +16,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Poppins', serif;
-      background-color: #f8f9fa; /* Light background for better contrast */
+      background-color: #f8f9fa; 
     }
 
     #header {
@@ -259,7 +259,9 @@
     <div id="header">
         <header>
             <div class="logo">
+            <a href="{{ route('patients.index') }}">
                 <img src="{{ asset('icons/logo.png') }}" alt="Telkomedika">
+            </a>
             </div>
         </header>
     </div>

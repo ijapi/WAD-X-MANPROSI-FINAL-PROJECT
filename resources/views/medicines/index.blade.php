@@ -28,7 +28,6 @@
         <hr>
     </div>
 
-    <!-- Search Bar -->
     <div class="search-bar">
         <form action="{{ route('medicines.index') }}" method="GET">
             <input type="text" name="query" placeholder="Example: Bam Panci Bandung 2024" value="{{ request()->input('query') }}">
@@ -36,7 +35,6 @@
         </form>
     </div>
 
-    <!-- Medicines List -->
     @if($medicines->isEmpty())
         <p>No medicines available.</p>
     @else
@@ -56,7 +54,6 @@
                             </div>
                         </div>
 
-                        <!-- Quantity Controls -->
                         <div class="quantity-controls" id="quantity-controls-{{ $loop->index }}" style="display: none;">
                             <button type="button" onclick="updateQuantity(-1, {{ $loop->index }})">-</button>
                             <span id="quantity-{{ $loop->index }}">1</span>
@@ -66,7 +63,6 @@
                         </div>
 
 
-                        <!-- Add to Cart Button -->
                         <button class="add-to-cart-button" onclick="addToCart({{ $loop->index }}, '{{ $medicine->medicine_name }}', {{ $medicine->price }}, {{ $medicine->stock }})">
                             Add to Cart
                         </button>
@@ -182,7 +178,6 @@ function updateCartPopup() {
 
 function updateCartItem(medicineName, change, stock) {
     if (cart[medicineName]) {
-        // Prevent exceeding stock
         if (change === 1 && cart[medicineName].quantity + 1 > stock) {
             alert(`You cannot add more than the available stock (${stock}) of ${medicineName}.`);
             return;
@@ -190,7 +185,6 @@ function updateCartItem(medicineName, change, stock) {
 
         cart[medicineName].quantity += change;
 
-        // Remove the item if quantity is 0
         if (cart[medicineName].quantity <= 0) {
             delete cart[medicineName];
         }
@@ -219,15 +213,9 @@ function closeCartPopup() {
 }
 
 function placeOrder() {
-        // Display notification
         alert("Your purchase has been made!");
         closeCartPopup();
 }
-
-// function goToCartPage() {
-    // window.location.href = '{{ route("checkout.index") }}';
-// }
 </script>
-
 </body>
 </html>

@@ -93,9 +93,12 @@
 </script>
 
 <div class="container">
-    <div class="header">
+    <div class="header" style="display: flex; justify-content: space-between; align-items: center;">
         <h1>Appointments</h1>
-        <a href="{{ route('adminappointments.create') }}" class="btn btn-primary">Add Appointment</a>
+        <div>
+            <a href="{{ route('adminappointments.create') }}" class="btn btn-primary">Add Appointment</a>
+            <a href="{{ route('adminappointments.appointments_export') }}" class="btn btn-secondary" style="margin-left: 10px;">Export PDF</a>
+        </div>
     </div>
     <table class="table table-bordered">
         <thead>
@@ -114,7 +117,7 @@
         @foreach($appointments as $index => $appointment)
             <tr>
                 <td>{{ $index + 1 }}</td>
-                <td>{{ $appointment->patient->name }}</td>
+                <td>{{ $appointment->patient->patient_name }}</td>
                 <td>{{ $appointment->doctor->name }}</td>
                 <td>{{ $appointment->specialization->name }}</td>
                 <td>{{ $appointment->appointment_date }}</td>

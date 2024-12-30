@@ -14,6 +14,7 @@ use App\Http\Controllers\AdminMedicineController;
 use App\Http\Controllers\AdminDoctorController;
 use App\Http\Controllers\AdminSymptomController;
 use App\Http\Controllers\SymptomController;
+use App\Http\Controllers\PdfController;
 
 
 // Landing
@@ -41,6 +42,7 @@ Route::delete('/patients/destroy/{id}', [PatientController::class, 'destroy'])->
 
 // Medicine 
 Route::get('/medicines', [MedicineController::class, 'index'])->name('medicines.index');
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 
 // Doctor 
 Route::get('/admindoctors', [MedicineController::class, 'index'])->name('admindoctors.index');
@@ -54,6 +56,8 @@ Route::delete('/appointments/{id}/cancel', [AppointmentController::class, 'cance
 Route::get('/adminappointments', [AdminAppointmentController::class, 'index'])->name('adminappointments.index');
 Route::get('/adminappointments/create', [AdminAppointmentController::class, 'create'])->name('adminappointments.create');
 Route::post('/adminappointments', [AdminAppointmentController::class, 'store'])->name('adminappointments.store');
+Route::get('adminappointments/{id}/edit', [AdminAppointmentController::class, 'edit'])->name('adminappointments.edit');
+Route::put('/adminappointments/{id}', [AdminPatientController::class, 'update'])->name('adminappointments.update');
 Route::delete('/adminappointments/{appointment}', [AdminAppointmentController::class, 'destroy'])->name('adminappointments.destroy');
 Route::post('/appointments/{id}/complete', [AdminAppointmentController::class, 'markAsComplete'])->name('adminappointments.complete');
 
@@ -61,8 +65,12 @@ Route::post('/appointments/{id}/complete', [AdminAppointmentController::class, '
 Route::get('/symptoms', [SymptomController::class, 'index'])->name('symptoms.index');
 Route::post('/symptoms/recommend', [SymptomController::class, 'recommend'])->name('symptoms.recommend');
 
-// Export (TAPI GABISA :"< ))
-Route::get('/adminPatient/export', [AdminPatientController::class, 'exportPdf'])->name('adminPatient.export');
+// Export (TAPI BISA :"P ))
+Route::get('/adminPatient/export', [PdfController::class, 'patient_exportPdf'])->name('adminPatient.patient_export');
+Route::get('/admindoctors/export', [PdfController::class, 'doctor_exportPdf'])->name('admindoctors.doctor_export');
+Route::get('/adminsymptoms/export', [PdfController::class, 'symptom_exportPdf'])->name('adminsymptoms.symptom_export');
+Route::get('/adminmedicine/export', [PdfController::class, 'medicine_exportPdf'])->name('adminmedicine.medicine_export');
+Route::get('/adminappointments/export', [PdfController::class, 'appointments_exportPdf'])->name('adminappointments.appointments_export');
 
 // Resource Routes
 Route::resource('admins', AdminController::class);

@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            font-size: 0.8rem;
+            font-size: 1rem;
         }
         table {
             width: 100%;
@@ -32,27 +32,21 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
+                <th>No.</th>
                 <th>Name</th>
-                <th>Date of Birth</th>
-                <th>Gender</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>ID Card</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Stock</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($patients as $patient)
+            @foreach ($medicines as $medicine)
                 <tr>
-                    <td>{{ $patient->id }}</td>
-                    <td>{{ $patient->patient_name }}</td>
-                    <td>{{ $patient->date_of_birth }}</td>
-                    <td>{{ $patient->gender }}</td>
-                    <td>{{ $patient->email }}</td>
-                    <td>{{ $patient->phone }}</td>
-                    <td>{{ $patient->address }}</td>
-                    <td>{{ $patient->id_card }}</td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $medicine->medicine_name }}</td>
+                    <td>{{ $medicine->description }}</td>
+                    <td>Rp {{ number_format($medicine->price, 0, ',', '.') }}</td> 
+                    <td>{{ $medicine->stock }}</td>
                 </tr>
             @endforeach
         </tbody>

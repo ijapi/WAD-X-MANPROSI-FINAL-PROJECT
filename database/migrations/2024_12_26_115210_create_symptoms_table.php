@@ -9,9 +9,9 @@ class CreateSymptomsTable extends Migration
     public function up()
     {
         Schema::create('symptoms', function (Blueprint $table) {
-            $table->id(); // Primary key
-            $table->string('name', 255); // Name of the symptom
-            $table->timestamps(); // Created at & Updated at
+            $table->id(); 
+            $table->string('name', 255); 
+            $table->timestamps(); 
         });
     }
 
