@@ -23,7 +23,9 @@
         </header>
     </div>
 
-    <h1 class="mb-4">{{ $nav }}</h1>
+    <div class="hero">
+        <h1>{{ $nav }}</h1>
+    </div>
 
     <div class="edit-form'">
         <div class="profile-box">

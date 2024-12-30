@@ -54,12 +54,12 @@
                 <div class="main_header">
                     <nav>
                         <ul style="list-style-type:none;" class="nav">
-                            <li class="main_nav"><a href="#">Home</a></li>
+                            <li class="main_nav"><a href="#services">Our Services</a></li>
                             <li class="main_nav"><a href="{{ url('doctors') }}">Doctors</a></li>
                             <li class="main_nav"><a href="{{ url('symptoms') }}">Check Symptoms</a></li>
                             <li class="main_nav"><a href="{{ url('medicines') }}">Medicine</a></li> 
                             <li class="gradient">
-                                <button> Book Appointment > </button>
+                                <a href="{{ url('appointments') }}"><button> Book Appointment > </button></a>
                             </li>
                         </ul>
                     </nav>
@@ -85,7 +85,7 @@
         </div>
     </div>
 
-    <div class="services">
+    <div id="services">
         <div class="div_title">
             <p>Our Services</p>
         </div>
@@ -131,7 +131,7 @@
         </div>
     </div>
 
-    <div class="about_us">
+    <div id="about_us">
         <div class="dots1">
             <img src="icons/dots.png">
         </div>
@@ -275,24 +275,24 @@
                 <h1>Book Now</h1>
                 <hr>
                 <div class="footer_opt">
-                    <a>Book Appointment</a>
+                    <a href="{{ url('appointments') }}">Book Appointment</a>
                 </div>
             </div>
             <div class="discover_footer">
                 <h1>Discover Us</h1>
                 <hr>
                 <div class="footer_opt">
-                    <a>Services</a>
-                    <a>About Us</a>
-                    <a>Our Doctors</a>
+                    <a href="#services">Services</a>
+                    <a href="#about_us">About Us</a>
+                    <a href="{{ url('doctors') }}" >Our Doctors</a>
                 </div>
             </div>
             <div class="contact_footer">
                 <h1>Contact Us</h1>
                 <hr>
                 <div class="footer_opt">
-                    <a>1500115</a>
-                    <a>cs@telkomedika.co.id</a>
+                  <a href="tel:1500115">1500115</a>
+                  <a href="mailto:cs@telkomedika.co.id">cs@telkomedika.co.id</a>
                 </div>
             </div>
         </div>

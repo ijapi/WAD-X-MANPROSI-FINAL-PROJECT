@@ -26,7 +26,9 @@
         </header>
     </div>
 
-    <h1 class="mb-4">{{ $nav }}</h1>
+    <div class="hero">
+        <h1>{{ $nav }}</h1>
+    </div>
 
 
     <div class="profile-box">
@@ -52,10 +54,13 @@
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete your account?')">Delete Account</button>
             </form>
+            
             <form action="{{ route('patients.logout') }}" method="POST" style="display:inline;">
                 @csrf
                 <button type="submit" class="btn btn-secondary">Logout</button>
             </form>
+
+            
         </div>
     </div>
 

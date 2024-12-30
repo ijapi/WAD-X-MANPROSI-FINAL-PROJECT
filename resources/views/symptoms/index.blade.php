@@ -176,35 +176,36 @@
 </div>
 <div class="text-left mt-3">
     <button type="submit" form="symptom-form" class="btn btn-primary">Get Recommendation</button>
+    <a href="{{ url('appointments/create') }}"><button class="btn btn-primary">Book Now!</button></a>
 </div>
 
     </div>
 
     <footer>
-        <div class="footer-content">
-            <img src="{{ asset('icons/logo.png') }}" alt="Telkomedika" style="width:150px; height:120px;">
-            <div class="footer-section">
-                <h3>Book Now</h3>
+        <img src="icons/logo.png" alt="telkomedika">
+        <div class="footer_text">
+            <div class="book_footer">
+                <h1>Book Now</h1>
                 <hr>
-                <div>
-                    <a href="#">Book Appointment</a>
+                <div class="footer_opt">
+                    <a href="{{ url('appointments') }}">Book Appointment</a>
                 </div>
             </div>
-            <div class="footer-section">
-                <h3>Discover Us</h3>
+            <div class="discover_footer">
+                <h1>Discover Us</h1>
                 <hr>
-                <div>
-                    <a href="#">Services</a><br>
-                    <a href="#">About Us</a><br>
-                    <a href="#">Our Doctors</a>
+                <div class="footer_opt">
+                    <a href="#services">Services</a>
+                    <a href="#about_us">About Us</a>
+                    <a href="{{ url('doctors') }}" >Our Doctors</a>
                 </div>
             </div>
-            <div class="footer-section">
-                <h3>Contact Us</h3>
+            <div class="contact_footer">
+                <h1>Contact Us</h1>
                 <hr>
-                <div>
-                    <a href="tel:1500115">1500115</a><br>
-                    <a href="mailto:cs@telkomedika.co.id">cs@telkomedika.co.id</a>
+                <div class="footer_opt">
+                  <a href="tel:1500115">1500115</a>
+                  <a href="mailto:cs@telkomedika.co.id">cs@telkomedika.co.id</a>
                 </div>
             </div>
         </div>

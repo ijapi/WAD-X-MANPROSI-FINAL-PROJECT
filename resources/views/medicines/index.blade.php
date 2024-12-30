@@ -65,6 +65,7 @@
                             <span id="total-price-{{ $loop->index }}" style="margin-left: 10px;">Total: Rp{{ number_format($medicine->price, 2, ',', '.') }}</span>
                         </div>
 
+
                         <!-- Add to Cart Button -->
                         <button class="add-to-cart-button" onclick="addToCart({{ $loop->index }}, '{{ $medicine->medicine_name }}', {{ $medicine->price }}, {{ $medicine->stock }})">
                             Add to Cart
@@ -81,19 +82,49 @@
     <h3>Your Cart</h3>
     <div id="cart-items"></div>
     <p id="cart-total">Total: Rp0</p>
-    <button onclick="goToCartPage()">Go to Cart</button>
+    
     <button onclick="clearCart()">Clear Cart</button>
     <button onclick="closeCartPopup()">Close</button>
+    <div class="order-buttons">
+        <button onclick="placeOrder()">Place Order</button>
+    </div>
+</div>
 </div>
 
 
 <footer>
-   <img src="{{ asset('icons/logo.png') }}" alt="telkomedika">
-   <div class="footer_text">
-       <!-- Footer content -->
-       ...
-   </div>
-</footer>
+        <img src="icons/logo.png" alt="telkomedika">
+        <div class="footer_text">
+            <div class="book_footer">
+                <h1>Book Now</h1>
+                <hr>
+                <div class="footer_opt">
+                    <a href="{{ url('appointments') }}">Book Appointment</a>
+                </div>
+            </div>
+            <div class="discover_footer">
+                <h1>Discover Us</h1>
+                <hr>
+                <div class="footer_opt">
+                    <a href="#services">Services</a>
+                    <a href="#about_us">About Us</a>
+                    <a href="{{ url('doctors') }}" >Our Doctors</a>
+                </div>
+            </div>
+            <div class="contact_footer">
+                <h1>Contact Us</h1>
+                <hr>
+                <div class="footer_opt">
+                  <a href="tel:1500115">1500115</a>
+                  <a href="mailto:cs@telkomedika.co.id">cs@telkomedika.co.id</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
 
 <script>
 let cart = {};
@@ -101,8 +132,6 @@ let cart = {};
 function addToCart(index, medicineName, price, stock) {
     const quantity = parseInt(document.getElementById(`quantity-${index}`).innerText);
 
-    console.log(`Adding ${medicineName}: Quantity=${quantity}, Stock=${stock}`);
-    
     if (cart[medicineName]) {
         if (cart[medicineName].quantity + quantity > stock) {
             alert(`You cannot add more than the available stock (${stock}) of ${medicineName}.`);
@@ -189,10 +218,15 @@ function closeCartPopup() {
     document.getElementById('cart-popup').style.display = 'none';
 }
 
-function goToCartPage() {
-    // You can replace this with a proper redirect or form submission to send cart data to the backend.
-    window.location.href = '{{ route("checkout.index") }}';
+function placeOrder() {
+        // Display notification
+        alert("Your purchase has been made!");
+        closeCartPopup();
 }
+
+// function goToCartPage() {
+    // window.location.href = '{{ route("checkout.index") }}';
+// }
 </script>
 
 </body>
